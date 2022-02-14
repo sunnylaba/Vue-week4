@@ -7,7 +7,7 @@ export default {
            <div class="modal-content border-0">
              <div class="modal-header bg-dark text-white">
                <h5 id="productModalLabel" class="modal-title">
-                 <span v-if="isNew">新增產品</span>
+                 <span v-if="addProducts.isNew">新增產品</span>
                  <span v-else>編輯產品</span>
                </h5>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -47,7 +47,7 @@ export default {
                    </div>
                    <div v-else>
                      <button class="btn btn-outline-primary btn-sm d-block w-100"
-                       @click="createImages">
+                     @click.prevent="$emit('add-image')">
                        新增圖片
                      </button>
                    </div> <!-- 參考解答結束-->

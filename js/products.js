@@ -10,8 +10,9 @@ const App = {
             url: 'https://vue3-course-api.hexschool.io/v2',
             path: 'akihico',
             products: [],
-            isNew: true,
-            addProducts: {},
+            addProducts: {
+                isNew: true  
+            },
             tempProduct:{},
             pagination: {}
         }
@@ -49,7 +50,7 @@ const App = {
         },
         // 新增修改產品
         addProduct() {
-            if (this.isNew) {
+            if (this.addProducts.isNew) {
                 axios.post(`${this.url}/api/${this.path}/admin/product`, {data: this.addProducts})
                 .then((res) => {
                 alert(res.data.message);
@@ -87,12 +88,13 @@ const App = {
         // modal
         openModal() {
             this.addProducts = {};
-            this.isNew = true;
+            this.addProducts.isNew = true;
             myModal.show();
         },
         openEditModal(item) {
-            this.addProducts = {...item};
-            this.isNew = false;
+            this.addProducts = JSON.parse(JSON.stringify(item));//深層拷貝
+            //this.addProducts = {...item};淺層拷貝多圖新增友船參考問題
+            this.addProducts.isNew = false;
             myModal.show();
         },
         openDelModal(item) {
